@@ -38,11 +38,14 @@ class AdalineGD(object):
         random_gen = np.random.RandomState(self.random_state)
         self.w_ = random_gen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])
         self.cost_ = []
-
+        print("\n\n\n\n X::")
+        print(X)
         for i in range(self.n_iter):
             net_input = self.net_input(X)
             output = self.activation(net_input)
             errors = (y - output)
+            print("\n\n\n\n error::")
+            print(errors)
             self.w_[1:] += self.eta * X.T.dot(errors)
             self.w_[0] += self.eta * errors.sum()
             cost = (errors**2).sum() / 2.0
